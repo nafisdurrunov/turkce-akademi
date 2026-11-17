@@ -15,7 +15,7 @@ Aplikasi belajar **Bahasa Turki** untuk penutur Indonesia: 19 modul inti dari PD
 - **Aplikasi:** https://nafisdurrunov.github.io/turkce-akademi/
 - **Repositori:** https://github.com/nafisdurrunov/turkce-akademi
 
-Situs ini di-deploy otomatis oleh GitHub Actions setiap kali `main` di-push. Saat ini berjalan dalam **mode lokal** (tanpa cloud); login baru aktif setelah `VITE_SUPABASE_URL` dan `VITE_SUPABASE_ANON_KEY` diisi sebagai repository secret.
+Situs ini di-deploy otomatis oleh GitHub Actions setiap kali `main` di-push. Cloud sync **sudah aktif** melalui Supabase (project `turkce-akademi`); tanpa login, aplikasi tetap berjalan dalam mode lokal.
 
 > **Belum pernah memakai Supabase?** Ikuti panduan langkah demi langkah: [`PANDUAN-SUPABASE.md`](PANDUAN-SUPABASE.md).
 
