@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Türkçe Akademi">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#80081E"/>
+      <stop offset="0.55" stop-color="#A80D27"/>
+      <stop offset="1" stop-color="#C41230"/>
+    </linearGradient>
+    <radialGradient id="hi" cx="0.3" cy="0.12" r="0.9">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="crescent">
+      <rect width="512" height="512" fill="black"/>
+      <circle cx="238" cy="256" r="131" fill="white"/>
+      <circle cx="268" cy="256" r="104" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#hi)"/>
+  <circle cx="238" cy="256" r="131" fill="#FFFBF6" mask="url(#crescent)"/>
+  <polygon fill="#FFFBF6" points="393.1,198.6 406,238.2 447.8,238.2 414,262.8 426.9,302.5 393.1,278 359.3,302.5 372.2,262.8 338.5,238.2 380.2,238.2"/>
+</svg>
