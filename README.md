@@ -10,6 +10,13 @@ Aplikasi belajar **Bahasa Turki** untuk penutur Indonesia: 19 modul inti dari PD
 
 > Bab 1–19 mengikuti urutan modul PDF sumber. Bab 20 (*Günlük Konuşma 2*) adalah **bonus** di luar 19 modul.
 
+## Versi online
+
+- **Aplikasi:** https://nafisdurrunov.github.io/turkce-akademi/
+- **Repositori:** https://github.com/nafisdurrunov/turkce-akademi
+
+Situs ini di-deploy otomatis oleh GitHub Actions setiap kali `main` di-push. Saat ini berjalan dalam **mode lokal** (tanpa cloud); login baru aktif setelah `VITE_SUPABASE_URL` dan `VITE_SUPABASE_ANON_KEY` diisi sebagai repository secret.
+
 ---
 
 ## Daftar isi
