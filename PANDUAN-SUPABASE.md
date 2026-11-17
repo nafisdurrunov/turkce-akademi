@@ -127,22 +127,115 @@ Kalau muncul error **`relation "profiles" already exists`**, berarti sebagian sk
 
 ## Langkah 5 — Salin kunci API
 
-1. Buka **Project Settings** (ikon gerigi) → **API Keys**.
+Bagian ini yang paling sering bikin bingung, jadi kita pelan-pelan.
 
-   Di tampilan lama: **Project Settings → API**.
+### Dulu: "kunci API" itu bukan password
 
-2. Salin dua nilai:
+Aplikasi butuh **dua barang berbeda**, dan keduanya bukan password akunmu:
 
-   | Yang disalin | Dipakai sebagai |
-   | --- | --- |
-   | **Project URL** — `https://xxxx.supabase.co` | `VITE_SUPABASE_URL` |
-   | **Publishable key** — `sb_publishable_...` | `VITE_SUPABASE_ANON_KEY` |
+| Barang | Bentuknya | Analogi |
+| --- | --- | --- |
+| **Project URL** | `https://abcdefghijklmnop.supabase.co` | **Alamat** gedung Supabase-mu |
+| **Publishable key** | `sb_publishable_AbCdEf...` (panjang) | **Kartu tamu** yang boleh dilihat orang |
 
-   Kalau project-mu masih memakai kunci lama, nilainya bernama **anon public** dan berbentuk `eyJhbGciOi...`. Keduanya sah — aplikasi ini menerima dua-duanya.
+Aplikasi memakai alamat itu untuk tahu "ke mana harus menghubungi", dan kunci untuk berkata "saya aplikasi Türkçe Akademi". Password database dan secret key **tidak dipakai sama sekali**.
 
-3. **Jangan** menyalin **secret key** (`sb_secret_...`) atau **service_role**. Kunci itu bisa melewati RLS dan tidak boleh ada di browser.
+### Cara menemukan halamannya
+
+**Cara 1 — dari sidebar**
+
+1. Pastikan project `turkce-akademi` sedang terbuka (bukan halaman daftar project).
+2. Lihat **pojok kiri bawah** sidebar. Ada ikon **gerigi** dengan tulisan **Project Settings**.
+3. Klik, lalu pilih **API Keys**.
+   - Di tampilan Supabase lama, menunya bernama **API** (bukan *API Keys*).
+4. Di halaman itu ada bagian **Project URL** dan **Publishable key**.
+
+**Cara 2 — lewat alamat langsung**
+
+Perhatikan address bar browser saat project terbuka. Ada bagian seperti ini:
+
+```
+https://supabase.com/dashboard/project/abcdefghijklmnop
+                                            └────┬────┘
+                                            project ref
+```
+
+Ganti bagian setelah `/project/` dengan kode itu pada alamat berikut:
+
+```
+https://supabase.com/dashboard/project/<project-ref>/settings/api-keys
+```
+
+Contoh: kalau project ref-mu `abcdefghijklmnop`, buka
+`https://supabase.com/dashboard/project/abcdefghijklmnop/settings/api-keys`.
+
+### Yang harus diklik di halaman itu
+
+Halaman **API Keys** kurang lebih berisi:
+
+```
+Project URL
+  https://abcdefghijklmnop.supabase.co        [ikon salin]
+
+Publishable key
+  default   sb_publishable_AbCdEfGh...        [ikon salin]
+
+Secret keys                                   ← JANGAN disentuh
+  default   sb_secret_...                     ← JANGAN disentuh
+```
+
+1. Di baris **Project URL**, klik ikon **salin** (dua kotak bertumpuk). Kalau tidak ada ikon, klik teksnya lalu `Ctrl+A`, `Ctrl+C`.
+2. Di baris **Publishable key**, klik ikon **salin** pada kunci yang bernama `default`.
+3. Selesai. Kamu hanya butuh dua nilai itu.
+
+Kalau kunci tampil terpotong dengan titik-titik (`sb_publishable_AbC…`), **jangan menyalin teks yang terlihat**. Klik tombol salinnya, atau klik ikon mata untuk menampilkan penuh lebih dulu.
+
+### Kalau project-mu memakai tampilan lama
+
+Di **Project Settings → API** akan terlihat:
+
+- **Project URL** — sama seperti di atas.
+- **Project API keys** dengan dua baris: `anon` `public` dan `service_role` `secret`.
+
+Pilih yang **`anon` `public`**. Bentuknya panjang dan diawali `eyJhbGciOi...`. Jangan pilih `service_role`.
+
+Kalau di halaman **API Keys** ada tab **Legacy API keys**, isinya juga `anon` dan `service_role` — sama saja, ambil yang `anon`.
+
+### Mau lebih cepat? Pakai tombol Connect
+
+Di bagian atas dashboard biasanya ada tombol **Connect**. Klik, lalu pilih tab framework apa saja (misalnya *App Frameworks*). Di situ Supabase menampilkan potongan kode berisi:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://abcdefghijklmnop.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_AbCdEf...
+```
+
+Nilai setelah tanda `=` itulah dua barang yang kamu cari. Namanya berbeda karena contoh untuk framework lain, tapi isinya sama.
+
+### Bingung memilih? Ini patokannya
+
+| Kalau yang kamu lihat… | Ambil yang mana |
+| --- | --- |
+| `sb_publishable_...` dan `sb_secret_...` | **publishable** |
+| `anon` `public` dan `service_role` `secret` | **anon public** |
+| `eyJ...` panjang dan `eyJ...` panjang lainnya | yang diberi label **anon** |
+| Ada beberapa publishable key | yang bernama **default** |
+
+### Setelah dua nilai itu ada di tangan
+
+Jangan tempel di sini kalau kamu ragu — dua nilai ini memang aman dipublikasikan, tapi kalau mau lebih hati-hati, kamu bisa memasukkannya sendiri:
+
+```powershell
+# jalankan di PowerShell, ganti isinya dengan milikmu
+& "C:\Program Files\GitHub CLI\gh.exe" secret set VITE_SUPABASE_URL --body "https://abcdefghijklmnop.supabase.co"
+& "C:\Program Files\GitHub CLI\gh.exe" secret set VITE_SUPABASE_ANON_KEY --body "sb_publishable_AbCdEf..."
+```
+
+Atau kirim keduanya ke aku, dan aku yang memasang serta memicu build ulang.
 
 > Amankah publishable/anon key ditaruh di kode frontend? Aman. Kunci itu memang dirancang untuk publik; keamanan data dijaga oleh RLS di database, bukan oleh kerahasiaan kunci.
+
+> **Jangan pernah** menyalin **secret key** (`sb_secret_...`) atau **service_role**. Kunci itu bisa melewati RLS. Kalau kamu mengirim screenshot halaman ini, tutup/blur bagian *Secret keys* terlebih dahulu.
 
 ---
 
