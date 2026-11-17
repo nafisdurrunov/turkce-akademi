@@ -17,6 +17,8 @@ Aplikasi belajar **Bahasa Turki** untuk penutur Indonesia: 19 modul inti dari PD
 
 Situs ini di-deploy otomatis oleh GitHub Actions setiap kali `main` di-push. Saat ini berjalan dalam **mode lokal** (tanpa cloud); login baru aktif setelah `VITE_SUPABASE_URL` dan `VITE_SUPABASE_ANON_KEY` diisi sebagai repository secret.
 
+> **Belum pernah memakai Supabase?** Ikuti panduan langkah demi langkah: [`PANDUAN-SUPABASE.md`](PANDUAN-SUPABASE.md).
+
 ---
 
 ## Daftar isi
@@ -76,6 +78,8 @@ npm run preview
 ---
 
 ## Setup Supabase (cloud sync)
+
+> Panduan khusus pemula (dengan checklist dan solusi error): [`PANDUAN-SUPABASE.md`](PANDUAN-SUPABASE.md).
 
 Cloud sync memakai **Supabase Free Tier**. Diperlukan hanya jika kamu ingin progres yang sama di beberapa perangkat.
 

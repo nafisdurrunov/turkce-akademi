@@ -225,8 +225,8 @@ export function Guide() {
             <p>
               Buka <strong>Authentication</strong> → <strong>URL Configuration</strong>. Isi:
             </p>
-            <Code label="Site URL">{`http://localhost:5173`}</Code>
-            <Code label="Redirect URLs (tambahkan satu per baris)">{`http://localhost:5173/**\nhttps://nama-proyek.vercel.app/**\nhttps://username.github.io/turkce-akademi/**`}</Code>
+            <Code label="Site URL">{`https://nafisdurrunov.github.io/turkce-akademi/`}</Code>
+            <Code label="Redirect URLs (tambahkan satu per baris)">{`https://nafisdurrunov.github.io/turkce-akademi/**\nhttp://localhost:5173/**\nhttp://localhost:4173/**`}</Code>
             <p className="text-[11px]">
               Aplikasi memakai hash router (<code className="rounded bg-raised px-1">#/profil</code>), jadi cukup
               daftarkan alamat dasar beserta <code className="rounded bg-raised px-1">/**</code>. Wildcard menutup
@@ -236,15 +236,23 @@ export function Guide() {
 
           <Step n={5} title="Ambil kunci API">
             <p>
-              Buka <strong>Project Settings</strong> → <strong>API</strong>. Salin:
+              Buka <strong>Project Settings</strong> → <strong>API Keys</strong> (tampilan lama:{' '}
+              <strong>Project Settings</strong> → <strong>API</strong>). Salin:
             </p>
             <ul className="list-disc space-y-1 pl-5">
               <li><strong>Project URL</strong> → <code className="rounded bg-raised px-1">VITE_SUPABASE_URL</code></li>
               <li>
-                <strong>anon public</strong> → <code className="rounded bg-raised px-1">VITE_SUPABASE_ANON_KEY</code>
+                <strong>Publishable key</strong> (<code className="rounded bg-raised px-1">sb_publishable_…</code>) atau{' '}
+                <strong>anon public</strong> pada project lama →{' '}
+                <code className="rounded bg-raised px-1">VITE_SUPABASE_ANON_KEY</code>
               </li>
             </ul>
-            <p className="text-[11px]">Tempel ke <code className="rounded bg-raised px-1">.env</code>, lalu restart <code className="rounded bg-raised px-1">npm run dev</code>.</p>
+            <p className="text-[11px]">
+              Jangan pernah memakai <strong>secret key</strong> (<code className="rounded bg-raised px-1">sb_secret_…</code>)
+              atau <code className="rounded bg-raised px-1">service_role</code>. Untuk situs GitHub Pages, simpan kedua
+              nilai sebagai repository secret, lalu jalankan ulang workflow.
+            </p>
+            <p className="text-[11px]">Untuk lokal: tempel ke <code className="rounded bg-raised px-1">.env</code>, lalu restart <code className="rounded bg-raised px-1">npm run dev</code>.</p>
           </Step>
 
           <Step n={6} title="Uji sinkronisasi">
