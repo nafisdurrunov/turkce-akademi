@@ -138,6 +138,8 @@ Aplikasi butuh **dua barang berbeda**, dan keduanya bukan password akunmu:
 | **Project URL** | `https://abcdefghijklmnop.supabase.co` | **Alamat** gedung Supabase-mu |
 | **Publishable key** | `sb_publishable_AbCdEf...` (panjang) | **Kartu tamu** yang boleh dilihat orang |
 
+**Project URL selalu mengikuti pola** `https://<project-ref>.supabase.co`. Kalau kamu sudah tahu project ref (kode di address bar dashboard), alamatnya bisa langsung ditulis tanpa mencari — misalnya project ref `jbiwvhcmoccbtfmwfhgo` berarti URL-nya `https://jbiwvhcmoccbtfmwfhgo.supabase.co`.
+
 Aplikasi memakai alamat itu untuk tahu "ke mana harus menghubungi", dan kunci untuk berkata "saya aplikasi Türkçe Akademi". Password database dan secret key **tidak dipakai sama sekali**.
 
 ### Cara menemukan halamannya
